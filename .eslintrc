@@ -1,0 +1,14 @@
+{
+	"extends": "eslint:recommended",
+	"env": {
+		"node": true
+	},
+	"parser": "babel-eslint",
+	"rules": {
+			"consistent-return": 2,
+			"indent"           : [0, 2],
+			"no-else-return"   : 1,
+			"semi"             : [1, "always"],
+			"space-unary-ops"  : 2
+	}
+}

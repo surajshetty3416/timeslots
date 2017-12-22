@@ -1,0 +1,24 @@
+{
+  "name": "timeslots",
+  "version": "1.0.0",
+  "description": "Get available timeslots ",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "keywords": [
+    "timeslots",
+    "availiblitity",
+    "available",
+    "slots",
+    "time"
+  ],
+  "author": "Suraj Shetty",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.13.1",
+    "webpack": "^3.10.0"
+  }
+}
