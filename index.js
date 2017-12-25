@@ -2,32 +2,20 @@
 
 module.exports = class {
 	constructor(maxRange, usedSlots) {
-		this.availableTimeSlots = [maxRange];
 		this.usedSlots = usedSlots;
+		this.availableTimeSlots = this.getAvailableTimeSlots([maxRange], usedSlots);
 	}
 
-	getAvailableSlots() {
-		let tempSlots = [];
-		this.usedSlots.forEach(usedSlot => {
-			this.availableTimeSlots.forEach(range => {
-				tempSlots = tempSlots.concat(this.slots(range, usedSlot));
-			});
-		});
-		this.availableTimeSlots = tempSlots;
+	get freeSlots() {
 		return this.availableTimeSlots;
 	}
 
-	freeUpSlots(freedSlots) {
-		freedSlots.forEach(freedSlot => {
-			let tempSlots = [];
-			this.usedSlots.forEach(range => {
-				tempSlots = tempSlots.concat(this.slots(range, freedSlot));
-			});
-			this.usedSlots = tempSlots;
-		});
+	addUsedSlots(usedSlotsArray) {
+		this.usedSlots = this.usedSlots.concat(usedSlotsArray);
+		this.availableTimeSlots = this.getAvailableTimeSlots(this.availableTimeSlots, usedSlotsArray);
 	}
 
-	getAvailableSlotsBetween(range) {
+	getFreeSlotsBetween(range) {
 		let availableSlots = [];
 		this.availableTimeSlots.forEach(slot => {
 			if (slot.start >= range.end || slot.end <= range.start) {
@@ -51,7 +39,18 @@ module.exports = class {
 		return availableSlots;
 	}
 
-	slots(range, usedSlot) {
+	getAvailableTimeSlots(availableTimeSlots, usedSlots) {
+		usedSlots.forEach(usedSlot => {
+			let tempSlots = [];
+			availableTimeSlots.forEach(range => {
+				tempSlots = tempSlots.concat(this.getAvailablePatches(range, usedSlot));
+			});
+			availableTimeSlots = tempSlots;
+		});
+		return availableTimeSlots;
+	}
+
+	getAvailablePatches(range, usedSlot) {
 		let timeSlotArray = [];
 		if (range.start > usedSlot.end || range.end < usedSlot.start) {
 			timeSlotArray.push(range);
@@ -70,5 +69,25 @@ module.exports = class {
 			}
 		}
 		return timeSlotArray;
+	}
+
+	getOverlappingUsedSlots() {
+		let slots = this.usedSlots;
+		let arrayToReturn = [];
+		for (let index = 0; index < slots.length; index++) {
+			let arr = [];
+			let slot1 = slots[index];
+			for (let index2 = index + 1; index2 < slots.length; index2++) {
+				let slot2 = slots[index2];
+				if (!(slot1.start >= slot2.end || slot1.end <= slot2.start)) {
+					arr.push(slots[index2]);
+				}
+			}
+			if (arr.length) {
+				arr.splice(0, 0, slot1);
+				arrayToReturn.push(arr);
+			}
+		}
+		return arrayToReturn;
 	}
 };

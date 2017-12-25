@@ -1,14 +1,19 @@
 {
 	"extends": "eslint:recommended",
 	"env": {
-		"node": true
+		"node": true,
+		"es6": true
 	},
 	"parser": "babel-eslint",
 	"rules": {
-			"consistent-return": 2,
-			"indent"           : [0, 2],
-			"no-else-return"   : 1,
-			"semi"             : [1, "always"],
-			"space-unary-ops"  : 2
+		"consistent-return": 2,
+		"indent": [0, 2],
+		"no-else-return": 1,
+		"semi": [1, "always"],
+		"space-unary-ops": 2,
+		"no-unused-vars": ["error", {
+			"vars": "local",
+			"args": "none"
+		}]
 	}
 }
