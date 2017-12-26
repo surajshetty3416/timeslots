@@ -1,7 +1,7 @@
 {
-  "name": "timeslots",
+  "name": "jstimeslot",
   "version": "0.0.1",
-  "description": "A zero dependency time slots manager",
+  "description": "A zero dependency time slot manager",
   "main": "./index.js",
   "scripts": {
     "test": "ava"

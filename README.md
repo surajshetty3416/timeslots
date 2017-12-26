@@ -1,4 +1,4 @@
-# Timeslots
+# JS Timeslot
 
 Get free time patches between given time range
 
@@ -7,7 +7,7 @@ ___
 
 ### Usage
 ```javascript
-const Timeslot = require('timeslots');
+const Timeslot = require('jstimeslot');
 
 // Pass 'start' and 'end' in UNIX TIME (Milliseconds)
 const maxRange = {
