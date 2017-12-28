@@ -2,8 +2,13 @@
 
 Get free time patches between given time range
 
-___
 
+### Installation
+
+```bash
+npm install jstimeslot
+
+```
 
 ### Usage
 ```javascript
@@ -67,7 +72,7 @@ manager.getFreeSlotsBetween({ 'start': 1483237799990, 'end': 1483286400000 }); /
 
 
 #### Overlapping slots
-Find overlapping used slots ( returns an array of arrays) 
+Find overlapping used slots (returns an array of arrays) 
 ```javascript
 manager.getOverlappingUsedSlots();
 /*
